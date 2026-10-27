@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="Dawid Ziółkowski - Game Programmer. Portfolio projektów Unity, C# i gameplay programming.">
+
+  <title>Dawid Ziółkowski | Game Programmer Portfolio</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SEKCJA POWITALNA -->
+  <header class="hero">
+    <div class="container">
+      <h1>Dawid Ziółkowski</h1>
+
+      <p class="subtitle">
+        Game Programmer | Unity/C# | QA Tester
+      </p>
+
+      <p class="bio">
+        Hi, my name is Dawid. I am passionate about game development. 
+        I have always been fascinated by how an idea transforms into a functional world. 
+        As an aspiring game developer, I am honing my skills in game design and implementation, 
+        while constantly learning new tools and techniques.
+      </p>
+
+      <div class="links">
+        <a
+          href="https://github.com/dziolkowski"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/dawid-ziolkowski-unity-developer/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+
+        <a
+          href="media/DawidZiolkowskiCV.pdf"
+          download
+          class="btn-primary"
+        >
+          CV (PDF)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEKCJA DOŚWIADCZENIA I EDUKACJI -->
+  <section class="resume-section container">
+    <div class="resume-grid">
+      
+      <!-- KOLUMNA DOŚWIADCZENIE -->
+      <div class="resume-column">
+        <h2>Experience</h2>
+        
+        <div class="resume-item">
+          <div class="resume-header">
+            <h3>Apprentice</h3>
+            <span class="resume-date">2025 - 2026</span>
+          </div>
+          <p class="resume-company">Simplicity Games</p>
+          <p class="resume-desc">I worked on the project "Majster Symulator." I gained professional experience in game testing, mechanic creation, bug reporting, and collaborating with a development team.</p>
+        </div>
+        
+        <!-- Miejsce na kolejne doświadczenie - skopiuj cały blok <div class="resume-item"> -->
+        
+      </div>
+
+      <!-- KOLUMNA EDUKACJA -->
+      <div class="resume-column">
+        <h2>Education</h2>
+        
+        <div class="resume-item">
+          <div class="resume-header">
+            <h3>Game Development</h3>
+            <span class="resume-date">2023 - 2026</span>
+          </div>
+          <p class="resume-company">Collegium Da Vinci, Poznan</p>
+          <p class="resume-desc">Graduated with a focus on Unity programming, C#, and gameplay mechanics. Developed strong teamwork and rapid prototyping skills.</p>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-header">
+            <h3>Mechanical Engineering</h3>
+            <span class="resume-date">2017 - 2021</span>
+          </div>
+          <p class="resume-company">Poznan University of Technology, Poznan</p>
+          <p class="resume-desc"></p>
+        </div>
+        
+        <!-- Miejsce na kolejną edukację - skopiuj cały blok <div class="resume-item"> -->
+        
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEKCJA PROJEKTÓW -->
+  <main class="container">
+    <section class="projects-section">
+      <h2>Projects</h2>
+
+      <!-- SLIDER PROJEKTÓW -->
+      <div class="slider-wrapper">
+
+        <button
+          id="prev-btn"
+          class="slider-btn"
+          type="button"
+          aria-label="Poprzednie projekty"
+        >
+          &#10094;
+        </button>
+
+        <div
+          id="projects-slider"
+          class="projects-slider"
+          aria-label="Lista projektów"
+        >
+          <!-- Karty projektów generuje script.js -->
+        </div>
+
+        <button
+          id="next-btn"
+          class="slider-btn"
+          type="button"
+          aria-label="Następne projekty"
+        >
+          &#10095;
+        </button>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL PROJEKTU -->
+  <div
+    id="project-modal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <div class="modal-content large-modal">
+
+      <!-- NAGŁÓWEK MODALA -->
+      <div class="modal-header">
+        <button
+          class="home-btn"
+          type="button"
+          title="Wróć do strony głównej"
+          aria-label="Wróć do strony głównej"
+        >
+          &#8962;
+        </button>
+
+        <h1 id="modal-title">Tytuł Projektu</h1>
+      </div>
+
+      <!-- ZAWARTOŚĆ PROJEKTU -->
+      <div id="modal-body"></div>
+
+      <!-- NAWIGACJA MIĘDZY PROJEKTAMI -->
+      <div class="modal-footer-nav">
+        <button
+          id="modal-prev-btn"
+          class="nav-circle-btn"
+          type="button"
+          aria-label="Poprzedni projekt"
+        >
+          &#10094;
+        </button>
+
+        <button
+          id="modal-next-btn"
+          class="nav-circle-btn"
+          type="button"
+          aria-label="Następny projekt"
+        >
+          &#10095;
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LIGHTBOX DO ZDJĘĆ -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
+    <span class="lightbox-close" aria-label="Zamknij podgląd">&times;</span>
+    <img id="lightbox-img" src="" alt="Powiększone zdjęcie">
+  </div>
+
+  <!-- STOPKA -->
+  <footer>
+    <p>
+      &copy; 2026 Dawid Ziółkowski.
+      Kontakt:
+      <a href="mailto:ziolkowski.dawid97@email.com">
+        ziolkowski.dawid97@email.com
+      </a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

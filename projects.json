@@ -1,0 +1,235 @@
+[
+  {
+    "id": "majstersymulator",
+    "title": "Majster Symulator",
+    "role": "Apprentice | Gameplay Programmer",
+    "technologies": "Unity 2022.3.62f3, C#, ScribtabeleObject, ModuleObject",
+    "platform": "STORE.STEAMPOWERED.COM",
+    "platformLink": "https://store.steampowered.com/app/3167920/Majster_Symulator/",
+    "image": "media/MajsterSymulator/MSMain.avif",
+    "description": "As a contributor to a commercial title (available on Steam), I was responsible for the design and implementation of interactive mini-games embedded within the game world. My objective was to create a satisfying physics model for soccer and basketball, accounting for edge cases (e.g., collision blocking when dropping objects) and implementing score validation logic based on triggers and vectors. Due to a Non-Disclosure Agreement (NDA), I am presenting only code snippets of specific proprietary mechanics, stripped of core game logic and graphical assets.",
+    "gameplayVideoId": "MGeV_XKA2Kw",
+    "codeBlocks": [
+      {
+        "title": "Sequential Score Validation & Aim Assist",
+        "description": "The throwing mechanic implementation utilizes dynamic force calculation (AddForce) based on the player's distance from the hoop, which enhances \"Game Feel\" and facilitates scoring from a distance. The scoring system relies on a trigger event sequence (Top → Bottom) and a velocity vector check (velocity.y < 0), preventing invalid scoring when the ball enters the hoop from below.",
+        "image": "media/MajsterSymulator/SSV.avif",
+        "imagePosition":"right"
+      },
+      {
+        "title": "State Management & Safety Zones",
+        "description": "The soccer system introduces a \"Safety Zone\" mechanism to prevent unwanted physics interactions (e.g., immediate, accidental kicks) when the player releases the ball. I utilized a Timer and trigger exit detection (OnTriggerExit) to activate kick physics only at a safe distance. Additionally, the system distinguishes between a \"throw\" and a \"kick\", awarding goals only for intentional foot interactions.",
+        "image": "media/MajsterSymulator/SM.avif",
+        "imagePosition":"left"
+      },
+      {
+        "title": "Modular Architecture & Separation of Concerns",
+        "description": "The mechanics were implemented using a component-based architecture (Composition over Inheritance). Scoring logic (Score), UI display (ScoreboardUI), and physics (SoccerBall/BasketballBall) were decoupled into independent modules communicating via C# Events (Action<int>). This ensures high code extensibility and testability.",
+        "image": "media/MajsterSymulator/MA.avif",
+        "imagePosition":"right"
+      }
+    ]
+  },
+
+  {
+    "id": "twistedgods",
+    "title": "Twisted Gods",
+    "role": "Gameplay Programmer | Game Tester",
+    "technologies": "Unity 2023.22f1, C#, ATB, Combat, Combo",
+    "platform": "ITCH.IO",
+    "platformLink": "https://frost-gdv.itch.io/twisted-gods",
+    "image": "media/TwistedGods/TGMain.avif",
+    "description": "The player assumes the role of a band of chosen ones, blessed by the last god who has not abandoned humanity. Our heroes embark on a quest to stop the divine forces ravaging their once-peaceful land. Along their journey, they will battle maddened humans, the twisted nature of a formerly harmonious world, and divine servants.",
+    "gameplayVideoId": "VXohUg26Ii8",
+    "keySolutions": [
+      {
+        "items": [
+          "Polymorphism and Inheritance: Specialized units (PlayerUnit, EnemyUnit, BossUnit) inherit from a common Unit base class. It encapsulates the core logic (HP management, ATB gauge countdown, status system), allowing for the rapid and seamless addition of new enemy types without code duplication.",
+          "Data-Driven Design (Scriptable Objects): Skill parameters (SkillSO) and generated room definitions (RoomSO) are fully decoupled from the core logic. New attacks, skill tiers, or Roguelite level content can be configured and balanced directly in the Unity Inspector without writing a single line of code.",
+          "Separation of Concerns: Decoupling the damage calculation system and combo windows (SkillManager) from global battle management, action queueing, and unit placement on a 3x3 grid (BattleManager)."
+        ],
+        "image": "media/TwistedGods/KTS1.avif",
+        "imagePosition": "right"
+      },
+      {
+        "items": [
+          "Spatial AI: Complex AI logic (BossUnit) that continuously evaluates free tiles on the grid. The algorithms can make decisions regarding boss phase transitions and telegraph incoming attacks (vertical, horizontal, AoE) in advance through a dedicated warning system.",
+          "Real-Time Management & ATB System: A dynamic system that calculates action bar fill rates based on individual unit speeds and time modifiers (TimeScale), perfectly synchronized with the player's Action Points (AP) and the Grid system.",
+          "Probabilistic Algorithms (RNG): Implementation of weighted room randomization in the ProgressionManager, which allows for precise control over the difficulty curve and prevents the generation of repetitive, monotonous sequences during a single run."
+        ],
+        "image": "media/TwistedGods/KTS2.avif",
+        "imagePosition": "left"
+      }
+    ],
+    "gameplay": [
+      {
+        "items": [
+          "Tactical Real-Time Combat: The player must dynamically manage Active Time Battle (ATB) gauges and Action Points (AP) on a 3x3 grid, reacting precisely to telegraphed enemy attacks.",
+          "Procedural Challenge Generation: The game utilizes weighted randomization algorithms to select upcoming rooms, ensuring unique encounter sequences and a flexible difficulty curve during each run.",
+          "Progression and Stat System: Defeating enemies grants experience points that feed into a progression-table-based development system, allowing for the seamless scaling of the hero's stats and overall power.",
+          "Strategic Combo Management: Players have full control over board positioning and skill chaining; they must hit specific timing windows (Tiers 1-3) to maximize damage and apply debuffs to enemies."
+        ],
+        "image": "media/TwistedGods/Gameplay.avif",
+        "imagePosition": "right"
+      }
+    ],
+    "codeBlocks": [
+      {
+        "title": "Combat Logic Standardization",
+        "description": "The core of the game's entire unit system is the abstract Unit base class, which serves as a universal foundation for both the player character and enemies. This class centralizes and automates repetitive processes, such as health point calculation, Active Time Battle (ATB) gauge countdowns, and dynamic management of active status effects (Damage over Time, Heal over Time). Through the use of inheritance and abstract methods, specific behaviors - such as unique visual effects for taking damage or turn-start logic - have been delegated to derived classes. Additionally, the architecture utilizes an Event system to communicate with the User Interface and game managers, ensuring loose coupling and making the entire system highly modular, readable, and primed for the easy addition of new unit types.",
+        "image": "media/TwistedGods/CLS.avif",
+        "imagePosition":"left"
+      },
+      {
+        "title": "Data And Logic System",
+        "description": "Spatial Grid Analysis and Sequence System (AI Positioning Algorithms): Enemy mechanics (specifically BossUnit) combine spatial grid analysis with a system of precise combat sequences. The AI continuously scans the board (using multidimensional loops), evaluating tile occupancy during movement and minion summoning, dynamically filtering out unavailable cells. Instead of chaotic attacks, the AI utilizes state machines (Phase 1 / Phase 2) to plan attack vectors (vertical, horizontal, Area of Effect) based on its current position. This sequential approach allows for precise threat telegraphing, providing the player with clear visual feedback about incoming attacks, while enabling designers to easily balance timings directly from the Unity Inspector.",
+        "image": "media/TwistedGods/DALS.avif",
+        "imagePosition":"right"
+      },
+      {
+        "title": "",
+        "description": "Multi-Layered Damage Calculation (Battle State Management): At the core of the combat system lies a dedicated manager (SkillManager), responsible for the detailed processing of real-time combat mathematics. The algorithm dynamically evaluates the final damage, taking into account the attacker's base stats, modifiers assigned to SkillSO objects (depending on the active Tier 1-3), and current status effects applied to the target (e.g., Armor Break, Bleed, or Defense Up). Additionally, the system fully integrates with dynamic timing windows (ComboWindowTime). This allows for seamless balancing of the game's arcade aspect (combo timing) directly via variables within the Unity Inspector. All mathematical and battle state logic is completely decoupled from the UI layer, ensuring clean architecture and high project scalability.",
+        "image": "media/TwistedGods/DALS2.avif",
+        "imagePosition":"left"
+      },
+      {
+        "title": "",
+        "description": "Weighted Event Randomization (Data-Driven Progression System): The core roguelite loop in the project is managed by a dedicated ProgressionManager. At the heart of this system is a Weighted RNG algorithm, fully integrated with the data-driven architecture, which dynamically selects upcoming encounters and events from a pool of predefined data objects (RoomSO). The algorithm not only analyzes probabilities but also automatically manages loading the appropriate battle environment, generating enemy pools on available grid tiles, and assigning post-battle reward modifiers. Relying on a weight-based system effectively prevents the generation of frustrating or repetitive sequences. Most importantly, the entire campaign structure and the spawn chances of specific room types can be seamlessly balanced and tweaked by Game Designers directly from the Unity Inspector, without any source code modification.",
+        "image": "media/TwistedGods/DALS3.avif",
+        "imagePosition":"right"
+      }
+    ]
+  },
+
+  {
+    "id": "mechasurvivor",
+    "title": "MechaSurvivor",
+    "role": "Gameplay Programmer | Game Tester",
+    "technologies": "Unity 2023.1.5f1, C#, ScriptableObject, UI (Canvas/TMP)",
+    "platform": "ITCH.IO",
+    "platformLink": "https://frost-gdv.itch.io/mechasurvivor",
+    "image": "media/MechaSurvivor/MS_glowne.png",
+    "description": "A scalable, inheritance-based Weapon System utilizing ScriptableObjects, featuring dynamic aiming logic switching (Turret vs. Sidearm) and a real-time stat upgrade system.",
+    "gameplayVideoId": "YJ1M2BQbTj8",
+    "keySolutions": [
+      {
+        "items": [
+          "Polymorphism & Inheritance: All weapons inherit from the BaseWeapon abstract class, allowing for the seamless addition of new weapon types (Laser, Rocket, Shotgun) without modifying the core system code.",
+          "Data-Driven Design (ScriptableObjects): Weapon data (damage, prefabs, icons) is completely decoupled from logic. New weapons can be configured directly in the Unity Inspector without writing a single line of code."
+        ],
+        "image": "media/MechaSurvivor/MechaSurvivor1.avif",
+        "imagePosition": "right"
+      },
+      {
+        "items": [
+          "Separation of Concerns: Decoupling projectile logic (Rocket.cs, InternalBulletHandler) from weapon logic (Gun, RocketLauncher).",
+          "Physics Implementation: Utilizing Physics.OverlapSphere (Chainsaw), Raycast (Laser), and Rigidbody-based physics (Projectiles)."
+        ],
+        "image": "media/MechaSurvivor/MechaSurvivor2.avif",
+        "imagePosition": "left"
+      }
+    ],
+    "gameplay": [
+      {
+        "items": [
+          "Time-Based Survival Challenge: The player is tasked with surviving a hostile environment for a fixed duration of 10 minutes.",
+          "Dynamic Difficulty Scaling: The game difficulty ramps up over time by introducing stronger enemy variants and scaling their health values.",
+          "Progression & Upgrade System: Defeating enemies yields currency/points, which can be exchanged for immediate weapon enhancements or health upgrades.",
+          "Strategic Loadout Management: Players have full control over weapon selection and slot assignment (Top vs. Side mounts) to optimize their combat strategy."
+        ],
+        "image": "media/MechaSurvivor/MechaSurvivor3.avif",
+        "imagePosition": "right"
+      }
+    ],
+    "codeBlocks": [
+      {
+        "title": "Weapon System Architecture Diagram",
+        "description": "I utilized inheritance (BaseWeapon) to standardize upgrade logic (ApplyUpgrade) and ScriptableObjects (WeaponData) for data-driven game balancing without code modification. The system interacts with the environment via the IDamageable interface, ensuring loose coupling between the combat system and enemies.",
+        "image": "media/MechaSurvivor/Weapon_system1.avif",
+        "imagePosition":"right"
+      },
+      {
+        "image": "media/MechaSurvivor/Weapon_system2.avif"
+      },
+      {
+        "image": "media/MechaSurvivor/Weapon_system3.avif"
+      },
+      {
+        "title": "Data System",
+        "description": "Procedural Shotgun Spread (Quaternion Math): The shotgun mechanic utilizes Quaternion mathematics to calculate projectile trajectories dynamically. The system generates a randomized spreadAngle for each pellet while maintaining rotation relative to the muzzle's forward vector. This data-driven approach allows for rapid game balancing (adjusting between tight vs. wide spread) by simply tweaking a single variable in the Unity Inspector.",
+        "image": "media/MechaSurvivor/Data_system1.avif",
+        "imagePosition":"right"
+      },
+      {
+        "title": "",
+        "description": "Scalable Stat Upgrade System (Polymorphic Approach): Leveraging polymorphism for granular statistic management. The ApplyUpgrade method overrides the base implementation, allowing for the modification of specific parameters relevant to unique weapon types (e.g., pellet count for shotguns vs. reload time). The system fetches incremental values from a StatUpgradeData structure, enabling designers to balance player progression directly via data assets without code modification.",
+        "image": "media/MechaSurvivor/Data_system2.avif",
+        "imagePosition":"left"
+      },
+      {
+        "title": "",
+        "description": "Dynamic Loadout Selection (Data-Driven UI): A manager system handling the weapon acquisition loop (Loot System). The logic selects three unique options from a pool of available ScriptableObjects and dynamically configures the UI elements (icons, descriptions, click events). By utilizing delegates and lambda expressions (e.g., inside AssignWeaponToSpecificSlot), the system allows for flexible assignment of the chosen weapon to any available hardpoint/slot on the player's chassis.",
+        "image": "media/MechaSurvivor/Data_system3.avif",
+        "imagePosition":"right"
+      }
+    ]
+  },
+
+  {
+    "id": "bigbrainquiz",
+    "title": "Big Brain Quiz",
+    "role": "Gameplay Programmer | Game Tester",
+    "technologies": "Unity 6000.2.7f2, C#, ScribtabeleObject, UI (Canvas/TMP)",
+    "platform": "GITHUB.COM",
+    "platformLink": "https://github.com/dziolkowski/FroggitMobile",
+    "image": "media/BigBrainQuiz/BBQMain.avif",
+    "description": "A mobile trivia game challenging general knowledge under time pressure. The project emphasizes data scalability to avoid hardcoding. I developed a system based on ScriptableObjects, completely decoupling content from logic. This architecture allows for the seamless addition of hundreds of questions without requiring any script modifications.",
+    "gameplayImage": "media/BigBrainQuiz/BBQMain.avif",
+    "keySolutions": [
+      {
+        "items": [
+          "Data-Driven Design: Implemented a ScriptableObject-based architecture for question data storage, effectively decoupling game logic from content.",
+          "Algorithms: Developed a custom Extension Method implementing the Fisher-Yates shuffle algorithm for efficient question and answer randomization."
+        ],
+        "image": "media/BigBrainQuiz/KTS1.avif",
+        "imagePosition": "right"
+      },
+      {
+        "items": [
+          "UI & Game Flow: Managed the complete application lifecycle (Menu → Gameplay → Results) and utilized PlayerPrefs for simple data persistence across scenes.",
+          "Player Feedback System: Implemented a dynamic star rating system based on score thresholds, alongside a persistent Audio/SFX manager that saves user volume preferences."
+        ],
+        "image": "media/BigBrainQuiz/KTS2.avif",
+        "imagePosition": "left"
+      }
+    ],
+    "gameplay": [
+      {
+        "items": [
+          "Time-Attack Mechanics: A strict 10-second timer per question enforces rapid decision-making under pressure.",
+          "High Replayability: The system pulls a random subset of 21 questions from a larger database for each session. Answers are dynamically shuffled to prevent pattern memorization (e.g., avoiding \"always button A\").",
+          "Star Rating System: Player performance is converted into a 1-3 star rating, incentivizing replay and score optimization.",
+          "Intuitive UI: A clean, readable interface featuring a visual time-progress bar and immediate feedback on answers."
+        ],
+        "image": "media/BigBrainQuiz/Gameplay.avif",
+        "imagePosition": "right"
+      }
+    ],
+    "codeBlocks": [
+      {
+        "title": "Data System",
+        "description": "Scalable Question System."
+      },
+      {
+        "title": "",
+        "description": "Instead of hardcoding content, I designed a data-driven system based on ScriptableObjects. This architecture empowers designers to add new questions directly via the Unity Inspector without modifying the codebase. Additionally, I implemented the Fisher-Yates shuffle algorithm for answer randomization, preventing pattern predictability and repetition."
+      },
+      {
+        "image": "media/BigBrainQuiz/DS.avif"
+      },
+      {
+        "image": "media/BigBrainQuiz/DS2.avif"
+      }
+    ]
+  }
+]

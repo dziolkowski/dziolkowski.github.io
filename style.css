@@ -1,0 +1,1032 @@
+/* ========================================
+   KOLORY GLOBALNE
+======================================== */
+
+:root {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --accent-color: #38bdf8;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --code-bg: #090d16;
+}
+
+/* ========================================
+   PODSTAWOWE STYLE
+======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ========================================
+   SEKCJA POWITALNA - HERO
+======================================== */
+
+.hero {
+  padding: 70px 0;
+  border-bottom: 1px solid var(--border-color);
+
+  background: linear-gradient(
+    180deg,
+    rgba(56, 189, 248, 0.05),
+    transparent
+  );
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.2;
+  margin: 0 0 8px;
+  color: var(--accent-color);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+}
+
+.bio {
+  max-width: 750px;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* ========================================
+   SEKCJA DOŚWIADCZENIE & EDUKACJA
+======================================== */
+
+.resume-section {
+  padding: 60px 20px 20px;
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.resume-column h2 {
+  font-size: 1.8rem;
+  margin: 0 0 25px;
+}
+
+.resume-column h2::after {
+  content: "";
+  display: block;
+  width: 55px;
+  height: 3px;
+  margin-top: 10px;
+  background: var(--accent-color);
+  border-radius: 3px;
+}
+
+.resume-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.resume-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-color);
+}
+
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.resume-header h3 {
+  margin: 0;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+}
+
+.resume-date {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: rgba(56, 189, 248, 0.15); /* Delikatne niebieskie tło dla daty */
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.resume-company {
+  margin: 0 0 10px;
+  font-weight: bold;
+  color: #cbd5e1;
+}
+
+.resume-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* Responsywność - gdy ekran robi się węższy (np. tablety, telefony), zróbmy z tego jedną kolumnę */
+@media (max-width: 800px) {
+  .resume-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* ========================================
+   LINKI: GITHUB, LINKEDIN, CV
+======================================== */
+
+.links {
+  margin-top: 24px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--card-bg);
+  color: var(--text-main);
+
+  border: 1px solid var(--border-color);
+  padding: 10px 18px;
+  border-radius: 8px;
+
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.links a:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+}
+
+.btn-primary {
+  background: var(--card-bg);
+  color: var(--text-main);
+}
+
+/* ========================================
+   SEKCJA PROJEKTÓW
+======================================== */
+
+.projects-section {
+  padding-top: 20px;
+}
+
+.projects-section h2 {
+  font-size: 1.8rem;
+  margin: 0 0 5px;
+}
+
+.projects-section h2::after {
+  content: "";
+  display: block;
+  width: 55px;
+  height: 3px;
+  margin-top: 10px;
+  background: var(--accent-color);
+  border-radius: 3px;
+}
+
+/* ========================================
+   SLIDER PROJEKTÓW
+======================================== */
+
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 20px;
+  min-width: 0;
+}
+
+.projects-slider {
+  display: flex;
+  gap: 20px;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  padding: 15px 5px;
+  scroll-behavior: smooth;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Karty projektów */
+
+.slider-card {
+  flex: 0 0 calc(33.333% - 14px);
+  min-width: 0;
+
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.slider-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-color);
+}
+
+.slider-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.slider-card h3 {
+  margin: 0;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* Strzałki slidera */
+
+.slider-btn {
+  flex-shrink: 0;
+
+  background: var(--card-bg);
+  color: var(--accent-color);
+
+  border: 1px solid var(--border-color);
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+
+  cursor: pointer;
+  z-index: 10;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.slider-btn:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+}
+
+#prev-btn {
+  margin-right: 10px;
+}
+
+#next-btn {
+  margin-left: 10px;
+}
+
+/* ========================================
+   MODAL PROJEKTU
+======================================== */
+
+.modal {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+
+  padding: 30px;
+  border-radius: 8px;
+
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Modal w formie podstrony */
+
+.large-modal {
+  width: 95%;
+  max-width: 1200px;
+  height: 90vh;
+  max-height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Nagłówek modala */
+
+.modal-header {
+  display: flex;
+  align-items: center;
+
+  padding: 20px 30px;
+  border-bottom: 1px solid var(--border-color);
+  gap: 20px;
+
+  flex-shrink: 0;
+}
+
+.modal-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  overflow-wrap: anywhere;
+}
+
+/* Przycisk powrotu */
+
+.home-btn {
+  flex-shrink: 0;
+
+  background: var(--card-bg);
+  color: var(--text-main);
+
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+
+  width: 45px;
+  height: 45px;
+
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.home-btn:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+}
+
+/* Właściwa zawartość modala */
+
+#modal-body {
+  padding: 30px;
+  overflow-y: auto;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+#modal-body h2 {
+  margin-top: 30px;
+}
+
+#modal-body h2:first-child {
+  margin-top: 0;
+}
+
+#modal-body p,
+#modal-body li {
+  color: #cbd5e1;
+}
+
+#modal-body li {
+  margin-bottom: 8px;
+}
+
+#modal-body a {
+  text-decoration: none;
+}
+
+#modal-body a:hover {
+  filter: brightness(1.1);
+}
+
+/* ========================================
+   INFORMACJE O PROJEKCIE
+======================================== */
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* ========================================
+   FILM Z GAMEPLAYU
+======================================== */
+
+.gameplay-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  margin: 25px 0 40px;
+  overflow: hidden;
+
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--code-bg);
+}
+
+.gameplay-video iframe {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ========================================
+   SEKCJE KODU
+======================================== */
+
+.code-section {
+  display: flex;
+  gap: 30px;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.code-desc {
+  flex: 1;
+  min-width: 0;
+}
+
+.code-window {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Okno kodu w stylu macOS */
+
+.mac-window {
+  background: #0d1117;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.mac-header {
+  height: 30px;
+  background: #161b22;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 15px;
+  gap: 8px;
+}
+
+.mac-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mac-dot.red {
+  background: #ff5f56;
+}
+
+.mac-dot.yellow {
+  background: #ffbd2e;
+}
+
+.mac-dot.green {
+  background: #27c93f;
+}
+
+.mac-window pre {
+  margin: 0;
+  padding: 20px;
+
+  color: #c9d1d9;
+  font-size: 0.9rem;
+
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.mac-window code {
+  font-family: Consolas, Monaco, monospace;
+}
+
+/* ========================================
+   NAWIGACJA NA DOLE MODALA
+======================================== */
+
+.modal-footer-nav {
+  padding: 20px;
+  border-top: 1px solid var(--border-color);
+
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+
+  flex-shrink: 0;
+}
+
+.nav-circle-btn {
+  background: var(--card-bg);
+  color: var(--text-main);
+
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+
+  width: 50px;
+  height: 50px;
+
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.nav-circle-btn:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+}
+
+/* ========================================
+   FOKUS KLAWIATURY
+======================================== */
+
+.links a:focus-visible,
+.slider-btn:focus-visible,
+.home-btn:focus-visible,
+.nav-circle-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
+/* ========================================
+   STOPKA
+======================================== */
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+  margin-top: 60px;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: var(--accent-color);
+}
+
+/* ========================================
+   TABLETY I MNIEJSZE EKRANY
+======================================== */
+
+@media (max-width: 800px) {
+  .slider-card {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  .code-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .code-desc,
+  .code-window {
+    width: 100%;
+  }
+
+  .modal-header {
+    padding: 15px 20px;
+  }
+
+  .modal-header h1 {
+    font-size: 1.5rem;
+  }
+
+  #modal-body {
+    padding: 20px;
+  }
+}
+
+/* ========================================
+   TELEFONY
+======================================== */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 45px 0;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .links {
+    gap: 10px;
+  }
+
+  .links a {
+    padding: 9px 14px;
+  }
+
+  .slider-card {
+    flex: 0 0 100%;
+  }
+
+  .slider-card img {
+    height: 190px;
+  }
+
+  .slider-btn {
+    font-size: 1.2rem;
+    padding: 8px 10px;
+  }
+
+  .large-modal {
+    width: 96%;
+    height: 94vh;
+    max-height: 94vh;
+  }
+
+  .modal-header {
+    gap: 12px;
+    padding: 12px 15px;
+  }
+
+  .modal-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .home-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+
+  #modal-body {
+    padding: 18px 15px;
+  }
+
+  .project-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mac-window pre {
+    padding: 15px;
+    font-size: 0.8rem;
+  }
+
+  .modal-footer-nav {
+    padding: 12px;
+    gap: 25px;
+  }
+
+  .nav-circle-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  footer {
+    padding: 30px 15px;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ========================================
+   OGRANICZENIE ANIMACJI
+   Dla osób preferujących mniej ruchu
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Informacje o projekcie */
+.project-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.project-technologies {
+  line-height: 1.7;
+}
+
+/* Przycisk otwierający projekt */
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: var(--card-bg);
+  color: var(--text-main);
+
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  padding: 13px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.project-link-btn:hover {
+  background: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.project-link-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
+/* ========================================
+   BLOKI TEKST + OBRAZEK (MODAL)
+======================================== */
+
+.content-block {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.content-block.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.content-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.content-image {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.content-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsywność dla bloków z obrazkami */
+@media (max-width: 800px) {
+  .content-block,
+  .content-block.row-reverse {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .content-image {
+    margin-top: 15px;
+  }
+}
+
+/* ========================================
+   ZDJĘCIA ZAMIAST KODU
+======================================== */
+
+.code-section.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.image-window img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+/* Aktualizacja responsywności dla odwróconych sekcji kodu */
+@media (max-width: 800px) {
+  .code-section,
+  .code-section.row-reverse {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ========================================
+   WYŚRODKOWANIE SAMEGO OBRAZKA/KODU
+======================================== */
+
+.code-section.center-content {
+  justify-content: center;
+}
+
+.code-section.center-content .code-window {
+  flex: 0 1 auto;
+  max-width: 100%;
+}
+
+/* ========================================
+   LIGHTBOX (POWIĘKSZANIE ZDJĘĆ)
+======================================== */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 200; /* Musi być nad modalem projektu (z-index: 100) */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.lightbox.show {
+  display: flex;
+}
+
+.lightbox img {
+  /* Wymuszamy zajęcie 90% szerokości i wysokości ekranu */
+  width: 90vw;
+  height: 90vh;
+  
+  /* To sprawi, że zdjęcie powiększy się do granic tych 90%, ale zachowa proporcje (nie rozciągnie się brzydko) */
+  object-fit: contain;
+  
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  font-size: 3.5rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.lightbox-close:hover {
+  color: var(--accent-color);
+}
+
+/* Zachęta do kliknięcia (efekt hover) */
+.content-image img,
+.image-window img {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.content-image img:hover,
+.image-window img:hover {
+  transform: scale(1.02);
+}
+
+/* ========================================
+   ZDJĘCIE ZASTĘPCZE ZAMIAST WIDEO
+======================================== */
+
+.gameplay-image {
+  margin: 25px 0 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.gameplay-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px; /* Zapobiega zbytnio gigantycznym zdjęciom na dużych ekranach */
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.gameplay-image img:hover {
+  transform: scale(1.02);
+}
